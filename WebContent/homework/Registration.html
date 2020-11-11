@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration.html</title>
+    <style>
+        *{
+            text-align: left; vertical-align: top;
+            line-height: 20px; font-family: monospace;
+            background-color: rgb(235, 235, 235);
+        }
+        table{
+            border-top: slategray 2px solid; border: silver 1px solid;
+            padding: 50px; background-color: white; border-top:  ;
+            border-spacing: 20px; width: 100%; ; 
+        }
+        th, td{
+            border-spacing: 20px; background-color: white;
+           width: 25px; 
+        }
+        input{
+            margin: 0px, 0px, 5px, 0px; background-color: white; border: solid 1px gainsboro;
+            line-height: 30px;
+        }
+        input[type=radio]{
+            display: none;
+        }
+
+        button{
+            width: auto;  background-color: rgb(68, 68, 68);
+            text-align: center; color: white; font-size: 1.2em;
+            padding: 7px 35px;
+        }
+        a > img{
+            width: 32px; height: 32px;
+        }
+        .id::first-letter{
+            color: red;  padding-top: 5px;
+        }
+        .sletter{
+            color:  #828a91; font-size: 0.8em ;
+        }
+        div{
+            text-align: right; font-size: 0.7em;
+        }
+        select{
+            background-color: white; height: 32px;
+        }
+        .gender{
+            border: steelblue;
+        }
+        
+    </style>
+</head>
+<body>
+    <form action="" style="text-align: center;">
+        <div>*필수입력사항</div>
+       <table>
+           <tr>
+               <th class="id">*&shy;아이디</th>
+               <td class="sletter"><input type="text"> <button class="aa">중복확인</button>
+                <br>※ 3~15자의 영문과 숫자만 가능합니다.
+                </td>
+           </tr>
+           <tr>
+               <th class="id">*&shy;비밀번호</th>
+               <td class="sletter"><input type="password">
+                <br>※영문/숫자/특수문자 조합 6~20자 이상 입력해주세요.(아이디/전화번호사용불가)
+                <br>※1234**비밀번호는 홈페이지 사용에 제한됩니다.
+            </td>
+           </tr>
+           <tr>
+               <th class="id">*&shy;비밀번호 확인</th>
+               <td><input type="password"></td>
+           </tr>
+           <tr>
+               <th class="id">*&shy;이름</th>
+               <td><input type="text"><input class="gender" type="radio" name="gender" value="W" checked><button>여</button>
+                <input type="radio" name="gender" value="M">남</td>
+           </tr>
+           <tr>
+               <th class="id">*&shy;생년월일</th>
+               <td><input type="text" ><a href=""><img src="../images/calendar.png" alt=""></a></td>
+           </tr>
+           <tr>
+               <th class="id">*&shy;주소</th>
+               <td><input type="text"> <button class="aa">우편번호찾기</button><br>
+                <input type="text">    
+            </td>
+           </tr>
+           <tr>
+                <th class="id">*&shy;이메일</th>
+                <td style="font-size: 2em;"><input type="text"> @ <input type="text"> 
+                    <select name="email" id="email">
+                        <option value="naver">직접입력</option>
+                        <option value="naver">naver.com</option>
+                        <option value="naver">daum.net</option>
+                        <option value="naver">gmail.com</option>
+                        <option value="naver">hanmail.net</option>
+                    </select>
+                </td>
+           </tr>
+           <tr>
+               <th class="id">*&shy;휴대폰번호</th>
+               <td><select name="phone" id="phone">
+                   <option value="010">010</option>
+                   <option value="011">011</option>
+                   <option value="012">012</option>
+                   <option value="013">013</option>
+               </select>
+                <input type="text" size="4">-
+                <input type="text" size="4">
+            </td>
+           </tr>
+           <tr>
+               <th>전화번호</th>
+               <td><input type="text">-
+                <input type="text" size="4">-
+                <input type="text" size="4"></td>
+           </tr>
+           <tr>
+               <th>출판계약일</th>
+               <td><input type="text"><a href=""><img src="../images/calendar.png" alt="달력"></a></td>
+           </tr>
+           <tr>
+               <th>출판종료일</th>
+               <td><input type="text"><a href=""><img src="../images/calendar.png" alt="달력"></a></td>
+           </tr>
+           <tr>
+               <th>선택정보</th>
+               <td>
+                    <input type="checkbox" name="select" id="">자비출판
+                    <input type="checkbox" name="select" id="">반기획출판
+                    <input type="checkbox" name="select" id="">프리미엄출판
+                    <input type="checkbox" name="select" id="">출판컨설팅<br>
+                    <input type="checkbox" name="select" id="">기획출판
+                    <input type="checkbox" name="select" id="">미정
+               </td>
+           </tr>
+       </table>
+       <fieldset style="border: none; background-color: white; position: relative;">
+           <legend>이용약관 동의*</legend>
+            <input type="checkbox" name="license" id=""> 전체 동의 <br>
+            &nbsp;&nbsp;&nbsp;<input type="checkbox" name="license" id=""
+                > 이용약관(필수) <br>
+                &nbsp;&nbsp;&nbsp;<input type="checkbox" name="license" id=""> 개인정보처리방침(필수) <br>
+                &nbsp;&nbsp;&nbsp;<input type="checkbox" name="license" id=""> 이벤트 및 혜택 알림 수신 (선택) <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="license" id=""> SMS
+            <input type="checkbox" name="license" id=""> 이메일
+
+
+       </fieldset>
+       <button>가입 하기</button>
+    </form>
+</body>
+</html>
