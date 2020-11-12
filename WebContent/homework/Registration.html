@@ -13,53 +13,48 @@
         table{
             border-top: slategray 2px solid; border: silver 1px solid;
             padding: 50px; background-color: white; border-top:  ;
-            border-spacing: 20px; width: 100%; ; 
+            border-spacing: 20px 25px; width: 100%; ; 
         }
         th, td{
-            border-spacing: 20px; background-color: white;
+           background-color: white;
            width: 25px; 
         }
         input{
             margin: 0px, 0px, 5px, 0px; background-color: white; border: solid 1px gainsboro;
-            line-height: 30px;
+            line-height: 25px; margin-bottom: 5px ;
         }
-        input[type=radio]{
-            display: none;
-        }
-
         button{
-            width: auto;  background-color: rgb(68, 68, 68);
-            text-align: center; color: white; font-size: 1.2em;
-            padding: 7px 35px;
+           background-color: rgb(68, 68, 68);text-align: center; color: white;
+            padding: 5px 32px; border: 1px solid rgb(197, 197, 197);
+        }
+        button:hover{
+            background-color: rgb(202, 202, 202); color: black;
         }
         a > img{
             width: 32px; height: 32px;
         }
         .id::first-letter{
-            color: red;  padding-top: 5px;
+            color: red;
         }
         .sletter{
             color:  #828a91; font-size: 0.8em ;
         }
-        div{
-            text-align: right; font-size: 0.7em;
-        }
+        div{text-align: right; font-size: 0.7em; }
         select{
             background-color: white; height: 32px;
         }
-        .gender{
-            border: steelblue;
-        }
+        
+        
         
     </style>
 </head>
 <body>
     <form action="" style="text-align: center;">
-        <div>*필수입력사항</div>
+        <div class="id">*&shy;필수입력사항</div>
        <table>
            <tr>
                <th class="id">*&shy;아이디</th>
-               <td class="sletter"><input type="text"> <button class="aa">중복확인</button>
+               <td class="sletter"><input type="text"> <button>중복확인</button>
                 <br>※ 3~15자의 영문과 숫자만 가능합니다.
                 </td>
            </tr>
@@ -76,8 +71,9 @@
            </tr>
            <tr>
                <th class="id">*&shy;이름</th>
-               <td><input type="text"><input class="gender" type="radio" name="gender" value="W" checked><button>여</button>
-                <input type="radio" name="gender" value="M">남</td>
+               <td><input type="text">
+                <input style="background-color: #274069; color: white;" class="gender" type="button" name="gender" value="여">
+                <input class="gender" type="button" name="gender" value="남"></td>
            </tr>
            <tr>
                <th class="id">*&shy;생년월일</th>
@@ -86,7 +82,7 @@
            <tr>
                <th class="id">*&shy;주소</th>
                <td><input type="text"> <button class="aa">우편번호찾기</button><br>
-                <input type="text">    
+                <input type="text" style="width: 200px">&nbsp;&nbsp;<input type="text">    
             </td>
            </tr>
            <tr>
@@ -108,15 +104,15 @@
                    <option value="011">011</option>
                    <option value="012">012</option>
                    <option value="013">013</option>
-               </select>
-                <input type="text" size="4">-
+               </select> -
+                <input type="text" size="4"> -
                 <input type="text" size="4">
             </td>
            </tr>
            <tr>
                <th>전화번호</th>
-               <td><input type="text">-
-                <input type="text" size="4">-
+               <td><input type="text" size="4"> -
+                <input type="text" size="4"> -
                 <input type="text" size="4"></td>
            </tr>
            <tr>
@@ -148,7 +144,6 @@
                 &nbsp;&nbsp;&nbsp;<input type="checkbox" name="license" id=""> 이벤트 및 혜택 알림 수신 (선택) <br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="license" id=""> SMS
             <input type="checkbox" name="license" id=""> 이메일
-
 
        </fieldset>
        <button>가입 하기</button>
