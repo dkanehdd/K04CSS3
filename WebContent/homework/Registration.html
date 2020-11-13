@@ -6,26 +6,29 @@
     <title>Registration.html</title>
     <style>
         *{
-            text-align: left; vertical-align: top;
-            line-height: 20px; font-family: monospace;
+            text-align: left; font-size: 15pt;
+            line-height: 20px; font-family: initial;
             background-color: rgb(235, 235, 235);
         }
         table{
-            border-top: slategray 2px solid; border: silver 1px solid;
-            padding: 50px; background-color: white; border-top:  ;
-            border-spacing: 20px 25px; width: 100%; ; 
+            border: 1px solid gainsboro;
+            border-top: rgb(7, 41, 75) 3px solid;
+            padding: 50px; background-color: white;
+            border-spacing: 20px 25px; width: 100%; ;  
         }
         th, td{
-           background-color: white;
+           background-color: white;vertical-align: top;
            width: 25px; 
         }
         input{
+            vertical-align: top;
             margin: 0px, 0px, 5px, 0px; background-color: white; border: solid 1px gainsboro;
-            line-height: 25px; margin-bottom: 5px ;
+            line-height: 1em; margin-bottom: 5px ; height: 30px;
         }
         button{
            background-color: rgb(68, 68, 68);text-align: center; color: white;
-            padding: 5px 32px; border: 1px solid rgb(197, 197, 197);
+             border: 1px solid rgb(197, 197, 197);
+             height: 30px; padding: 5px;
         }
         button:hover{
             background-color: rgb(202, 202, 202); color: black;
@@ -39,10 +42,12 @@
         .sletter{
             color:  #828a91; font-size: 0.8em ;
         }
-        div{text-align: right; font-size: 0.7em; }
-        select{
-            background-color: white; height: 32px;
+        .dd{text-align: right; font-size: 9pt; }
+        select, option{
+            background-color: white; height: 32px; font-weight: bold;
+            border: 1px solid rgb(197, 197, 197); color: rgb(112, 112, 112);
         }
+        
         
         
         
@@ -50,7 +55,7 @@
 </head>
 <body>
     <form action="" style="text-align: center;">
-        <div class="id">*&shy;필수입력사항</div>
+        <div class="dd">*&shy;필수입력사항</div>
        <table>
            <tr>
                <th class="id">*&shy;아이디</th>
@@ -72,12 +77,12 @@
            <tr>
                <th class="id">*&shy;이름</th>
                <td><input type="text">
-                <input style="background-color: #274069; color: white;" class="gender" type="button" name="gender" value="여">
-                <input class="gender" type="button" name="gender" value="남"></td>
+                <input style="background-color: #274069; color: white;" type="button" name="gender" value="여">
+                <input type="button" name="gender" value="남"></td>
            </tr>
            <tr>
                <th class="id">*&shy;생년월일</th>
-               <td><input type="text" ><a href=""><img src="../images/calendar.png" alt=""></a></td>
+               <td><input type="text"  ><a href=""><img src="../images/calendar.png" alt=""></a></td>
            </tr>
            <tr>
                <th class="id">*&shy;주소</th>
@@ -105,15 +110,22 @@
                    <option value="012">012</option>
                    <option value="013">013</option>
                </select> -
-                <input type="text" size="4"> -
-                <input type="text" size="4">
+                <input type="text" size="4" maxlength="4"> -
+                <input type="text" size="4" maxlength="4">
             </td>
            </tr>
            <tr>
                <th>전화번호</th>
-               <td><input type="text" size="4"> -
-                <input type="text" size="4"> -
-                <input type="text" size="4"></td>
+               <td><select name="phone" id="phone">
+                    <option value="010">070</option>
+                    <option value="011">02</option>
+                    <option value="012">031</option>
+                    <option value="013">032</option>
+                    <option value="013">033</option>
+                    <option value="013">041</option>
+                </select> -
+                <input type="text" size="4" maxlength="4"> -
+                <input type="text" size="4" maxlength="4"></td>
            </tr>
            <tr>
                <th>출판계약일</th>
@@ -135,18 +147,16 @@
                </td>
            </tr>
        </table>
-       <fieldset style="border: none; background-color: white; position: relative;">
-           <legend>이용약관 동의*</legend>
-            <input type="checkbox" name="license" id=""> 전체 동의 <br>
-            &nbsp;&nbsp;&nbsp;<input type="checkbox" name="license" id=""
-                > 이용약관(필수) <br>
-                &nbsp;&nbsp;&nbsp;<input type="checkbox" name="license" id=""> 개인정보처리방침(필수) <br>
-                &nbsp;&nbsp;&nbsp;<input type="checkbox" name="license" id=""> 이벤트 및 혜택 알림 수신 (선택) <br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="license" id=""> SMS
-            <input type="checkbox" name="license" id=""> 이메일
-
-       </fieldset>
-       <button>가입 하기</button>
+       <table>
+           <div style="vertical-align: bottom;">이용약관 동의*</span> <span class="dd">선택항목에 동의하지 않은 경우도
+               회원가입 및 일반적인 서비스를 이용할 수 있습니다.
+           </div><br>
+           <tr><td><input type="checkbox" name="" id="">전체동의</td></tr> 
+           <tr><td><input type="checkbox" name="" id="">이용약관</td></tr> 
+           <tr><td><input type="checkbox" name="" id="">개인정보처리방침</td></tr> 
+               
+        </table>
+            <button>가입 하기</button>
     </form>
 </body>
 </html>
