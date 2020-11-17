@@ -4,6 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator.html</title>
+    <script>
+    var math1 = "";
+    var str1 = "";
+    function inputNum(number){
+        var result = document.getElementById("result");
+        var str ="";
+        if(result.value!=undefined){
+            if(result.value!=0){
+                str = result.value+"";
+            }
+        }
+        result.value = str + number;
+        result.innerHTML = str + number;
+    }
+    function backspace(){
+        var result1 = document.getElementById("result");
+        var result = result1.value
+        var str ="";
+        for(var i=0 ; i<result.length-1 ; i++){
+            str += result[i];
+        }
+        result1.value = str;
+        result1.innerHTML = str;
+    }
+    function calculator(math){
+        result = document.getElementById("result");
+        
+        if(result.value!=0){
+            str1 += result.value + math;
+        }else{
+            if(math1!=math){
+            var index = str1.lastIndexOf(math1);
+            var temp = str1.substring(0, index);
+            str1 = temp + ""+math;
+            }
+        }
+        math1 = math;
+        result.value=0;
+    }
+    function math2(){
+        var result = document.getElementById("result");
+        str1 += ""+result.value;
+        var rNum = eval(str1)
+        result.value = rNum+"";
+        result.innerHTML = rNum+"";
+        str1 = "";
+    }
+    </script>
     <style>
         table{
             margin: 200px;
@@ -32,36 +80,40 @@
     <h1>계산기</h1>
     <table>
         <tr>
-            <th id="result" colspan="4" name="result">123+654</th>
+            <th id="result" colspan="4" value="0">0</th>
         </tr>
         <tr>
-            <th class="reset" colspan="2"><button>BackSpace</button></th>
-            <th class="reset" colspan="2"><button type="reset">C</button></th>
+            <th class="reset" colspan="2"><button onclick="backspace();">BackSpace</button></th>
+            <th class="reset" colspan="2"><button onclick="location.reload();">C</button></th>
             
         </tr>
         <tr>
-            <th><button type="button">1</button></th>
-            <th><button type="button">2</button></th>
-            <th><button type="button" value="3">3</button></th>
-            <th><button style="background-color: #fa960a;"type="button">/</button></th>
+            <th><button type="button" onclick="inputNum(1);">1</button></th>
+            <th><button type="button" onclick="inputNum(2);">2</button></th>
+            <th><button type="button" onclick="inputNum(3);">3</button></th>
+            <th><button style="background-color: #fa960a;"type="button"
+                onclick="calculator('/')">/</button></th>
         </tr>
         <tr>
-            <th><button type="button">4</button></th>
-            <th><button type="button">5</button></th>
-            <th><button type="button">6</button></th>
-            <th><button  style="background-color: #fa960a;"type="button">X</button></th>
+            <th><button type="button" onclick="inputNum(4);">4</button></th>
+            <th><button type="button" onclick="inputNum(5);">5</button></th>
+            <th><button type="button" onclick="inputNum(6);">6</button></th>
+            <th><button  style="background-color: #fa960a;"type="button"
+                onclick="calculator('*')">X</button></th>
         </tr>
         <tr>
-            <th><button type="button">7</button></th>
-            <th><button type="button">8</button></th>
-            <th><button type="button">9</button></th>
-            <th><button  style="background-color: #fa960a;"type="button">+</button></th>
+            <th><button type="button" onclick="inputNum(7);">7</button></th>
+            <th><button type="button" onclick="inputNum(8);">8</button></th>
+            <th><button type="button" onclick="inputNum(9);">9</button></th>
+            <th><button  style="background-color: #fa960a;"type="button"
+                onclick="calculator('+')">+</button></th>
         </tr>
         <tr>
-            <th><button type="button">=</button></th>
-            <th><button type="button">0</button></th>
-            <th><button type="button">.</button></th>
-            <th><button  style="background-color: #fa960a;"type="button">-</button></th>
+            <th><button type="button" onclick="math2()">=</button></th>
+            <th><button type="button" onclick="inputNum(0);">0</button></th>
+            <th><button type="button" onclick="inputNum('.');">.</button></th>
+            <th><button  style="background-color: #fa960a;"type="button"
+                onclick="calculator('-')">-</button></th>
         </tr>
     </table>
 </body>

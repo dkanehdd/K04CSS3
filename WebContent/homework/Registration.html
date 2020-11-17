@@ -6,7 +6,7 @@
     <title>Registration.html</title>
     <style>
         *{
-            text-align: left; font-size: 15pt;
+            text-align: left; font-size: 13pt;
             line-height: 20px; font-family: initial;
             background-color: rgb(235, 235, 235);
         }
@@ -17,24 +17,28 @@
             border-spacing: 20px 25px; width: 100%; ;  
         }
         th, td{
-           background-color: white;vertical-align: top;
-           width: 25px; 
+           background-color: white;
         }
-        input{
-            vertical-align: top;
-            margin: 0px, 0px, 5px, 0px; background-color: white; border: solid 1px gainsboro;
-            line-height: 1em; margin-bottom: 5px ; height: 30px;
-        }
+        input[type="text"], input[type="password"] {
+            background-color: white; border: solid 1px gainsboro;
+            height: 35px;
+        }   
         button{
            background-color: rgb(68, 68, 68);text-align: center; color: white;
-             border: 1px solid rgb(197, 197, 197);
-             height: 30px; padding: 5px;
+           padding: 8px; border: 0px;height: 37px;
         }
+        input[type="button"] {
+            border: none; padding: 8px; width: 50px; text-align: center;
+        }    
         button:hover{
             background-color: rgb(202, 202, 202); color: black;
         }
         a > img{
-            width: 32px; height: 32px;
+            width: 28px; height: 28px;
+        }
+        a{
+            background-color: white; text-decoration: none;
+            color: blue; font-size: 9pt;
         }
         .id::first-letter{
             color: red;
@@ -42,16 +46,21 @@
         .sletter{
             color:  #828a91; font-size: 0.8em ;
         }
-        .dd{text-align: right; font-size: 9pt; }
+        .dd{text-align: right; font-size: 9pt; 
+        background-color: rgb(235, 235, 235); color: black;}
         select, option{
-            background-color: white; height: 32px; font-weight: bold;
+            background-color: white; height: 39px;; font-weight: bold;
             border: 1px solid rgb(197, 197, 197); color: rgb(112, 112, 112);
         }
-        
-        
-        
-        
+        span{
+            background-color: white; color: silver;
+        }
+        #finish{
+            background-color: #274069; color: white; margin-top: 20px;
+            width: 250px; height: 60px; border-radius: 5px;
+        }
     </style>
+
 </head>
 <body>
     <form action="" style="text-align: center;">
@@ -59,41 +68,52 @@
        <table>
            <tr>
                <th class="id">*&shy;아이디</th>
-               <td class="sletter"><input type="text"> <button>중복확인</button>
-                <br>※ 3~15자의 영문과 숫자만 가능합니다.
+               <td><input type="text" maxlength="15"> <button>중복확인</button>
+                <br>
                 </td>
            </tr>
            <tr>
+               <td></td>
+               <td class="sletter">※ 3~15자의 영문과 숫자만 가능합니다.</td>
+           </tr>
+           <tr>
                <th class="id">*&shy;비밀번호</th>
-               <td class="sletter"><input type="password">
-                <br>※영문/숫자/특수문자 조합 6~20자 이상 입력해주세요.(아이디/전화번호사용불가)
-                <br>※1234**비밀번호는 홈페이지 사용에 제한됩니다.
+               <td><input type="password" maxlength="20">
             </td>
            </tr>
            <tr>
+                <td></td>
+                <td  class="sletter">※영문/숫자/특수문자 조합 6~20자 이상 입력해주세요.(아이디/전화번호사용불가)
+                    <br>※1234**비밀번호는 홈페이지 사용에 제한됩니다.</td>
+           </tr>
+           <tr>
                <th class="id">*&shy;비밀번호 확인</th>
-               <td><input type="password"></td>
+               <td><input type="password" maxlength="20"></td>
            </tr>
            <tr>
                <th class="id">*&shy;이름</th>
                <td><input type="text">
-                <input style="background-color: #274069; color: white;" type="button" name="gender" value="여">
-                <input type="button" name="gender" value="남"></td>
+                <input style="background-color: #274069; color: white;" type="button" name="gender" value="여"
+                onclick="genderSelect(1);">
+                <input type="button" name="gender" value="남" onclick="genderSelect(2);"></td>
            </tr>
            <tr>
                <th class="id">*&shy;생년월일</th>
-               <td><input type="text"  ><a href=""><img src="../images/calendar.png" alt=""></a></td>
+               <td><input type="text"  ><a href=""> <img src="../images/calendar.png" alt=""></a></td>
            </tr>
            <tr>
                <th class="id">*&shy;주소</th>
-               <td><input type="text"> <button class="aa">우편번호찾기</button><br>
-                <input type="text" style="width: 200px">&nbsp;&nbsp;<input type="text">    
+               <td><input type="text"> <button class="aa">우편번호찾기</button>
             </td>
            </tr>
            <tr>
+               <td></td>
+               <td><input type="text" style="width: 200px">&nbsp;&nbsp;<input type="text"></td>
+           </tr>
+           <tr>
                 <th class="id">*&shy;이메일</th>
-                <td style="font-size: 2em;"><input type="text"> @ <input type="text"> 
-                    <select name="email" id="email">
+                <td style="font-size: 1.5em;"><input type="text"> @ <input type="text"> 
+                    <select id="email">
                         <option value="naver">직접입력</option>
                         <option value="naver">naver.com</option>
                         <option value="naver">daum.net</option>
@@ -104,7 +124,7 @@
            </tr>
            <tr>
                <th class="id">*&shy;휴대폰번호</th>
-               <td><select name="phone" id="phone">
+               <td><select>
                    <option value="010">010</option>
                    <option value="011">011</option>
                    <option value="012">012</option>
@@ -116,47 +136,63 @@
            </tr>
            <tr>
                <th>전화번호</th>
-               <td><select name="phone" id="phone">
-                    <option value="010">070</option>
-                    <option value="011">02</option>
-                    <option value="012">031</option>
-                    <option value="013">032</option>
-                    <option value="013">033</option>
-                    <option value="013">041</option>
+               <td><select name="phone">
+                    <option value="070">070</option>
+                    <option value="02">02</option>
+                    <option value="031">031</option>
+                    <option value="032">032</option>
+                    <option value="033">033</option>
+                    <option value="041">041</option>
                 </select> -
                 <input type="text" size="4" maxlength="4"> -
                 <input type="text" size="4" maxlength="4"></td>
            </tr>
            <tr>
                <th>출판계약일</th>
-               <td><input type="text"><a href=""><img src="../images/calendar.png" alt="달력"></a></td>
+               <td><input type="text"><a href=""> <img src="../images/calendar.png" alt="달력" ></a></td>
            </tr>
            <tr>
                <th>출판종료일</th>
-               <td><input type="text"><a href=""><img src="../images/calendar.png" alt="달력"></a></td>
+               <td><input type="text"><a href=""> <img src="../images/calendar.png" alt="달력"></a></td>
            </tr>
            <tr>
                <th>선택정보</th>
                <td>
-                    <input type="checkbox" name="select" id="">자비출판
-                    <input type="checkbox" name="select" id="">반기획출판
-                    <input type="checkbox" name="select" id="">프리미엄출판
-                    <input type="checkbox" name="select" id="">출판컨설팅<br>
-                    <input type="checkbox" name="select" id="">기획출판
-                    <input type="checkbox" name="select" id="">미정
+                    <input type="checkbox" name="select">자비출판
+                    <input type="checkbox" name="select">반기획출판
+                    <input type="checkbox" name="select">프리미엄출판
+                    <input type="checkbox" name="select">출판컨설팅
+                    <input type="checkbox" name="select">기획출판
+                    <input type="checkbox" name="select">미정
                </td>
            </tr>
        </table>
-       <table>
-           <div style="vertical-align: bottom;">이용약관 동의*</span> <span class="dd">선택항목에 동의하지 않은 경우도
-               회원가입 및 일반적인 서비스를 이용할 수 있습니다.
-           </div><br>
-           <tr><td><input type="checkbox" name="" id="">전체동의</td></tr> 
-           <tr><td><input type="checkbox" name="" id="">이용약관</td></tr> 
-           <tr><td><input type="checkbox" name="" id="">개인정보처리방침</td></tr> 
+       <table style="position: relative;">
+            <div style="vertical-align: bottom;">이용약관 동의* <span class="dd">선택항목에 동의하지 않은 경우도
+                회원가입 및 일반적인 서비스를 이용할 수 있습니다.</span>
+            </div><br>
+            <tr>
+                <th><input type="checkbox"> 전체동의</th>
+            </tr> 
+            <tr>
+                <td style="position: relative; left: 50px;"><input type="checkbox"> 
+                    이용약관 <span>(필수) </span><a href=""> 약관보기></a></td>
+            </tr> 
+            <tr>
+                <td style="position: relative; left: 50px;"><input type="checkbox"> 
+                    개인정보처리방침 <span>(필수) </span><a href=""> 약관보기></a></td>
+            </tr> 
+            <tr>
+                <td style="position: relative; left: 50px;"><input type="checkbox"> 이벤트 및 혜택 알림 수신 <span>(필수)</span></td>
+            </tr> 
+            <tr>
+                <td style="position: relative; left: 80px;"><input type="checkbox"> SMS &nbsp;&nbsp;&nbsp;
+                <input type="checkbox"> 이메일</td>
+        
+            </tr> 
                
         </table>
-            <button>가입 하기</button>
+        <button id="finish">가입 하기</button>
     </form>
 </body>
 </html>
