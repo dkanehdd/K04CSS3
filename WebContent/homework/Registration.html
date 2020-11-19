@@ -4,10 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration.html</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+    $( function() {
+      $( "input[type=radio]" ).checkboxradio({
+        icon: false
+      });
+    } );
+    </script>
     <style>
         *{
             text-align: left; font-size: 13pt;
-            line-height: 20px; font-family: initial;
+            line-height: 20px; font-family: 'Noto Sans KR', sans-serif;
             background-color: rgb(235, 235, 235);
         }
         table{
@@ -25,25 +38,26 @@
         }   
         button{
            background-color: rgb(68, 68, 68);text-align: center; color: white;
-           padding: 8px; border: 0px;height: 37px;
+           padding: 8px; border: 0px;height: 37px;border: none;
         }
         input[type="button"] {
             border: none; padding: 8px; width: 50px; text-align: center;
         }    
         button:hover{
             background-color: rgb(202, 202, 202); color: black;
+            cursor: pointer;
         }
         a > img{
-            width: 28px; height: 28px;
+            position: relative; top: 8px;
+            width: 35px; height: 35px;
         }
-        a{
-            background-color: white; text-decoration: none;
-            color: blue; font-size: 9pt;
+        a{background-color: white; text-decoration: none;
+            color: blue; font-size: 9pt; 
         }
         .id::first-letter{
             color: red;
         }
-        .sletter{
+        .sletter{ 
             color:  #828a91; font-size: 0.8em ;
         }
         .dd{text-align: right; font-size: 9pt; 
@@ -59,16 +73,121 @@
             background-color: #274069; color: white; margin-top: 20px;
             width: 250px; height: 60px; border-radius: 5px;
         }
+        
     </style>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+        function zipcodeFind(){
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    //Daum 우편번호 API가 전달해주는 값을 콘솔에 출력
+                    console.log(data.zonecode);
+                    console.log(data.address);
+                    console.log(data.sido);
+                    console.log(data.sigungu);
+                    //가입폼에 적용하기
+                    var f = document.regiform;
+                    f.zipcode.value = data.zonecode;
+                    f.address1.value = data.address;
+                    f.address2.focus();
+                }
+            }).open();
+        }
+    </script>
+    <script>
+        function checkId(){
+            var id = document.getElementById("id1").value;
+            if(id==""){
+                alert("아이디를 입력하세요");
+                return;
+            }
+            if(id.charCodeAt(0)>=48&&id.charCodeAt(0)<=57){
+                alert("※ 첫글자는 숫자로 시작할수 없습니다.");
+            }
+            for(var i=0 ; i<id.length ; i++){
+                if((id.charCodeAt(i)>=48&&id.charCodeAt(i)<=57)||
+                (id.charCodeAt(i)>=65&&id.charCodeAt(i)<=90)||
+                (id.charCodeAt(i)>=97&&id.charCodeAt(i)<=122)){
+                }
+                else{
+                    alert("※ 3~15자의 영문과 숫자만 가능합니다.");
+                    return;
+                }
+            }
+        }
+        function checkPw(pw){
+            var f1=true, f2=true, f3 = true;
+            var isN = false;
+            var uPw = ['0123','1234', '2345', '3456', '4567' ,'5678', '6789'];
+            var pw1 = document.getElementById("pw1");
+            if(pw.length>=6 && pw.length<=20){
+                for(var i=0; i<pw.length; i++){
+                    if(pw.charCodeAt(i)>=48 && pw.charCodeAt(i)<=57){
+                        f1 =false;
+                    }
+                    else if((pw.charCodeAt(i)>=65 && pw.charCodeAt(i)<=90)||
+                    (pw.charCodeAt(i)>=97 && pw.charCodeAt(i)<=122)){
+                    	f2 = false;
+                    }
+                    else{
+	                    switch(pw.charCodeAt(i)){
+	                    case 33 : case 63: case 42: case 35: 
+	                    	{f3=false;break;}
+	                    default: 
+	                    	f3=true;
+	                    }
+                    }
+                    console.log(i);
+                }
+                if(f1==false&& f2==false&& f3==false){isN=false;}
+                else{
+                    isN = true;
+                }
+            }
+            else{
+                isN = true;
+            }
+            if(isN){
+                pw1.style.color = "red";
+                pw1.hidden = false;
+            }else{
+                pw1.hidden= "hidden";
+            }
+        }
+        function checkPw2(pw){
+            var pw1 = document.getElementById("pwd");
+            var pw2 = document.getElementById("pw2");
+            if(pw1.value!=pw){
+                pw2.hidden = false;
+                pw2.style.color = "red";
+            }
+            else{
+                pw2.hidden = "hidden";
+            }
+        }
+        function emailSelect(obj){
+            var domain = document.getElementById("domain");
+            if(obj.value==""){
+                domain.readOnly = false;
+                domain.value = "";
+                domain.focus();
+            }
+            else{
+                domain.readOnly = true;
+                domain.value = obj[obj.selectedIndex].text;
+            }
+        }
+    </script>
 
 </head>
 <body>
-    <form action="" style="text-align: center;">
+    <form name="regiform" style="text-align: center;" >
         <div class="dd">*&shy;필수입력사항</div>
        <table>
            <tr>
                <th class="id">*&shy;아이디</th>
-               <td><input type="text" maxlength="15"> <button>중복확인</button>
+               <td><input id="id1" type="text" maxlength="15"> 
+                <button type="button" onclick="checkId();">중복확인</button>
                 <br>
                 </td>
            </tr>
@@ -78,47 +197,52 @@
            </tr>
            <tr>
                <th class="id">*&shy;비밀번호</th>
-               <td><input type="password" maxlength="20">
+               <td><input id="pwd" type="password" minlength="6" maxlength="20" 
+                    onblur="checkPw(this.value);"><span id="pw1" hidden> *비밀번호형식이 잘못되었습니다</span>
             </td>
            </tr>
            <tr>
                 <td></td>
-                <td  class="sletter">※영문/숫자/특수문자 조합 6~20자 이상 입력해주세요.(아이디/전화번호사용불가)
+                <td  class="sletter">※영문/숫자/특수문자 조합 6~20자 이상 입력해주세요.(단 !,?,*,# 외 사용불가)
                     <br>※1234**비밀번호는 홈페이지 사용에 제한됩니다.</td>
            </tr>
            <tr>
                <th class="id">*&shy;비밀번호 확인</th>
-               <td><input type="password" maxlength="20"></td>
+               <td><input type="password" maxlength="20"
+                onblur="checkPw2(this.value);"><span id="pw2" hidden> *비밀번호가 일치하지 않습니다</span></td>
            </tr>
            <tr>
                <th class="id">*&shy;이름</th>
                <td><input type="text">
-                <input style="background-color: #274069; color: white;" type="button" name="gender" value="여"
-                onclick="genderSelect(1);">
-                <input type="button" name="gender" value="남" onclick="genderSelect(2);"></td>
+                <label for="radio-1">여</label>
+                <input type="radio" name="gender" id="radio-1" checked>
+                <label for="radio-2">남</label>
+                <input type="radio" name="gender" id="radio-2">
            </tr>
            <tr>
                <th class="id">*&shy;생년월일</th>
-               <td><input type="text"  ><a href=""> <img src="../images/calendar.png" alt=""></a></td>
+               <td><input type="text"  ><a href=""> <img src="../images/pick.jpg" alt=""></a></td>
            </tr>
            <tr>
                <th class="id">*&shy;주소</th>
-               <td><input type="text"> <button class="aa">우편번호찾기</button>
+               <td><input type="text" name="zipcode" style="width: 100px"  value=""> 
+                <button type="button" class="aa" onclick="zipcodeFind();">우편번호찾기</button>
             </td>
            </tr>
            <tr>
                <td></td>
-               <td><input type="text" style="width: 200px">&nbsp;&nbsp;<input type="text"></td>
+               <td><input type="text" name="address1" value="" style="width: 200px"  >&nbsp;&nbsp;
+                <input type="text" name="address2" value=""></td>
            </tr>
            <tr>
                 <th class="id">*&shy;이메일</th>
-                <td style="font-size: 1.5em;"><input type="text"> @ <input type="text"> 
-                    <select id="email">
-                        <option value="naver">직접입력</option>
-                        <option value="naver">naver.com</option>
-                        <option value="naver">daum.net</option>
-                        <option value="naver">gmail.com</option>
-                        <option value="naver">hanmail.net</option>
+                <td><input type="text" style="width: 150px;"> @ <input type="text" style="width: 150px;" id="domain"> 
+                    <select id="email" onchange="emailSelect(this);">
+                        <option value="">직접입력</option>
+                        <option value="naver.com">naver.com</option>
+                        <option value="daum.net">daum.net</option>
+                        <option value="gmail.com">gmail.com</option>
+                        <option value="hanmail.net">hanmail.net</option>
                     </select>
                 </td>
            </tr>
@@ -149,11 +273,11 @@
            </tr>
            <tr>
                <th>출판계약일</th>
-               <td><input type="text"><a href=""> <img src="../images/calendar.png" alt="달력" ></a></td>
+               <td><input type="text"><a href="" > <img src="../images/pick.jpg" alt="달력"></a></td>
            </tr>
            <tr>
                <th>출판종료일</th>
-               <td><input type="text"><a href=""> <img src="../images/calendar.png" alt="달력"></a></td>
+               <td><input type="text"><a href=""> <img src="../images/pick.jpg" alt="달력"></a></td>
            </tr>
            <tr>
                <th>선택정보</th>
