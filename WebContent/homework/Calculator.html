@@ -8,48 +8,37 @@
     var math1 = "";
     var str1 = "";
     function inputNum(number){
+        var hid = document.getElementById("hid");
         var result = document.getElementById("result");
-        var str ="";
-        if(result.value!=undefined){
-            if(result.value!=0){
-                str = result.value+"";
-            }
-        }
-        result.value = str + number;
-        result.innerHTML = str + number;
+        str1 += number+"";
+        hid.value += math1+ number+"";
+        result.innerHTML = str1;
+        math1="";
     }
     function backspace(){
-        var result1 = document.getElementById("result");
-        var result = result1.value
-        var str ="";
-        for(var i=0 ; i<result.length-1 ; i++){
-            str += result[i];
+        var hid = document.getElementById("hid");
+        var result = document.getElementById("result");
+        var hid1 = hid.value;
+        var result1 = result.innerHTML;
+        if(result1!=""){
+            hid.value = hid1.substring(0, hid1.length-1);
+            result.innerHTML = result1.substring(0, result1.length-1);
+            str1 = result1.substring(0, result1.length-1);
         }
-        result1.value = str;
-        result1.innerHTML = str;
     }
     function calculator(math){
-        result = document.getElementById("result");
-        
-        if(result.value!=0){
-            str1 += result.value + math;
-        }else{
-            if(math1!=math){
-            var index = str1.lastIndexOf(math1);
-            var temp = str1.substring(0, index);
-            str1 = temp + ""+math;
-            }
-        }
         math1 = math;
-        result.value=0;
+        str1="";
     }
     function math2(){
         var result = document.getElementById("result");
-        str1 += ""+result.value;
-        var rNum = eval(str1)
-        result.value = rNum+"";
-        result.innerHTML = rNum+"";
-        str1 = "";
+        var hid = document.getElementById("hid");
+        var rNum = eval(hid.value);
+        if(rNum!=undefined){
+            result.innerHTML = rNum+"";
+            hid.value = rNum+"";
+            str1="";
+        }
     }
     </script>
     <style>
@@ -78,9 +67,10 @@
 </head>
 <body>
     <h1>계산기</h1>
+	<input type="text" id="hid" value="" style="display: none;"/>
     <table>
         <tr>
-            <th id="result" colspan="4" value="0">0</th>
+            <th id="result" colspan="4">0</th>
         </tr>
         <tr>
             <th class="reset" colspan="2"><button onclick="backspace();">BackSpace</button></th>
